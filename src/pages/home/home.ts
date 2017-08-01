@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Instagram } from '@ionic-native/instagram';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,7 @@ export class HomePage {
   foto: any=""
   existe: boolean = false
   constructor(public navCtrl: NavController, private alertCtrl: AlertController,
-              private camera: Camera) {
+              private camera: Camera, private instagram: Instagram) {
 
   }
 
@@ -42,6 +43,9 @@ export class HomePage {
 
   compartir(){
     console.log("Compartir")
+    this.instagram.share(this.foto, "Hoy desde #AngularMedellin")
+        .then(() => console.log("Compartida"))
+        .catch((error: any) => console.log("Error"));
   }
 
 
